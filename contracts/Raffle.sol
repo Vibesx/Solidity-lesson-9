@@ -5,6 +5,7 @@ pragma solidity ^0.8.8;
 import "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
 import "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol";
 import "@chainlink/contracts/src/v0.8/interfaces/KeeperCompatibleInterface.sol";
+import "hardhat/console.sol";
 
 error Raffle__NotEnoughETHEntered();
 error Raffle__TransferFailed();
@@ -68,6 +69,8 @@ contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
 	}
 
 	function enterRaffle() public payable {
+		console.log(msg.value);
+		console.log(i_entranceFee);
 		if (msg.value < i_entranceFee) {
 			revert Raffle__NotEnoughETHEntered();
 		}
