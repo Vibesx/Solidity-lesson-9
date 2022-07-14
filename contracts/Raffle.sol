@@ -107,6 +107,10 @@ contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
 		bool timePassed = (block.timestamp - s_lastTimeStamp > i_interval);
 		bool hasPlayers = (s_players.length > 0);
 		bool hasBalance = address(this).balance > 0;
+		console.log("Is Open: %s", isOpen);
+		console.log("Time Passed: %s", timePassed);
+		console.log("Has Players: %s", hasPlayers);
+		console.log("Has Balance: %s", hasBalance);
 		upkeepNeeded = (isOpen && timePassed && hasPlayers && hasBalance);
 	}
 
